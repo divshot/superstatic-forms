@@ -61,7 +61,7 @@ function isXhr (req) {
 function respondWhenEmailSent (req, res, taskConfig) {
   return function (err, emailResponse) {
     if (isXhr(req)) {
-      parseMailHeaders((emailResponse) ? emailResponse.message : {}, function (emailObject) {
+      parseMailHeaders((emailResponse || {}).message, function (emailObject) {
         res.writeHead(err ? 500 : 200);
         res.end(err ? err.message : JSON.stringify(emailObject));
       });
@@ -77,7 +77,6 @@ function respondWhenEmailSent (req, res, taskConfig) {
 
 function parseMailHeaders (headers, callback) {
   var mailparser = new MailParser();
-  
   mailparser.once('end', callback);
   mailparser.write(headers);
   mailparser.end();

@@ -140,7 +140,7 @@ describe('forms service', function () {
       .end(done);
   });
   
-  it('redirects to back to page that sent request if no success or error values are defined in config');
+  it('defaults to a blank success page when email is sent and there is no success redirect configured');
   
 });
 
