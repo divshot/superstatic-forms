@@ -2,32 +2,7 @@ var forms = require('../index.js');
 var expect = require('chai').expect;
 var request = require('supertest');
 var connect = require('connect');
-
-var config = {
-  "forms": {
-    "contact": {
-      "to":"Test Person <test@test.com>",
-      "from": "Some Guy <sender@test.com>",
-      "subject":"Contact form filled out by {{name}}",
-      "text": "HEY THERE!",
-      "success": "/contact?status=success",
-      "error": "/contact?status=error"
-    },
-    "template": {
-      "to":"Test Person <test@test.com>",
-      "from":"{{email}}",
-      "subject":"{{name}}",
-      "text": "HEY THERE!",
-      "success": "/contact?status=success",
-      "error": "/contact?status=error"
-    },
-    "faulty": {
-      "subject":"Beta Signup",
-      "text":"{{name}} signed up for the private beta.",
-      "error": "/messed/up"
-    }
-  }
-};
+var config = require('./config.json');
 
 describe('forms service', function () {
   var app;
@@ -134,7 +109,38 @@ describe('forms service', function () {
       .end(done);
   });
   
-  it('returns a 500 on unsuccessful send from xhr request with error message');
+  it('returns a 500 on unsuccessful send from xhr request with error message', function (done) {
+    app.use(forms({
+      transport: 'Stub',
+      options: {
+        error: 'can not do'
+      }
+    }));
+    
+    request(app)
+      .post('/forms/blank')
+      .set('x-requested-with', 'XMLHttpRequest')
+      .expect(500)
+      .expect('can not do')
+      .end(done);
+  });
+  
+  it('redirects to error page if sending email is unseccessful with form request', function (done) {
+    app.use(forms({
+      transport: 'Stub',
+      options: {
+        error: 'can not do'
+      }
+    }));
+    
+    request(app)
+      .post('/forms/blank')
+      .expect(302)
+      .expect('Location', config.forms.blank.error)
+      .end(done);
+  });
+  
+  it('redirects to back to page that sent request if no success or error values are defined in config');
   
 });
 

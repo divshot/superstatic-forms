@@ -1,0 +1,29 @@
+{
+  "forms": {
+    "contact": {
+      "to":"Test Person <test@test.com>",
+      "from": "Some Guy <sender@test.com>",
+      "subject":"Contact form filled out by {{name}}",
+      "text": "HEY THERE!",
+      "success": "/contact?status=success",
+      "error": "/contact?status=error"
+    },
+    "template": {
+      "to":"Test Person <test@test.com>",
+      "from":"{{email}}",
+      "subject":"{{name}}",
+      "text": "HEY THERE!",
+      "success": "/contact?status=success",
+      "error": "/contact?status=error"
+    },
+    "faulty": {
+      "subject":"Beta Signup",
+      "text":"{{name}} signed up for the private beta.",
+      "error": "/messed/up"
+    },
+    "blank": {
+      "to": "test@test.com",
+      "error": "/error"
+    }
+  }
+}

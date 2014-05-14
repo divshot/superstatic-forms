@@ -4,7 +4,7 @@
   "description": "A simple service for capturing submitted forms via email",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && mocha test/",
+    "test": "npm run lint && mocha test/index.js",
     "lint": "jshint index.js test/"
   },
   "repository": {
