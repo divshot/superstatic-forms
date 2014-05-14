@@ -2,6 +2,9 @@
 
 A simple service for capturing submitted forms via email.
 
+[![NPM Module](http://img.shields.io/npm/v/superstatic-forms.svg?style=flat)](https://npmjs.org/package/superstatic-forms)
+[![Build Status](http://img.shields.io/travis/divshot/superstatic-forms.svg?style=flat)](https://travis-ci.org/divshot/superstatic-forms)
+
 ## Client Configuration
 
 Superstatic Forms is configured by providing a JSON object with keys
