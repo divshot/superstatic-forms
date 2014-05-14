@@ -1,0 +1,31 @@
+{
+  "name": "superstatic-forms",
+  "version": "0.1.0",
+  "description": "A simple service for capturing submitted forms via email",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/divshot/superstatic-forms.git"
+  },
+  "keywords": [
+    "superstatic",
+    "forms",
+    "services",
+    "divshot"
+  ],
+  "author": "Divshot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/divshot/superstatic-forms/issues"
+  },
+  "homepage": "https://github.com/divshot/superstatic-forms",
+  "devDependencies": {
+    "chai": "~1.9.1",
+    "connect": "~2.15.0",
+    "mocha": "~1.18.2",
+    "supertest": "~0.12.1"
+  }
+}
