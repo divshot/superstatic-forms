@@ -24,10 +24,14 @@
   },
   "homepage": "https://github.com/divshot/superstatic-forms",
   "devDependencies": {
+    "body-parser": "~1.2.0",
     "chai": "~1.9.1",
     "connect": "~2.15.0",
-    "jshint": "^2.5.0",
+    "jshint": "~2.5.0",
     "mocha": "~1.18.2",
     "supertest": "~0.12.1"
+  },
+  "dependencies": {
+    "nodemailer": "^0.6.4"
   }
 }
