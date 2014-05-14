@@ -4,7 +4,8 @@
   "description": "A simple service for capturing submitted forms via email",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/"
+    "test": "npm run lint && mocha test/",
+    "lint": "jshint index.js test/"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "chai": "~1.9.1",
     "connect": "~2.15.0",
+    "jshint": "^2.5.0",
     "mocha": "~1.18.2",
     "supertest": "~0.12.1"
   }
