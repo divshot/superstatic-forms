@@ -67,9 +67,12 @@ function respondWhenEmailSent (req, res, taskConfig) {
       });
     }
     else {
+      if (!err && !taskConfig.success) return res.end('Success');
+      
       res.writeHead(302, {
         'Location': (err) ? taskConfig.error : taskConfig.success
       });
+      
       res.end();
     }
   };

@@ -140,7 +140,32 @@ describe('forms service', function () {
       .end(done);
   });
   
-  it('defaults to a blank success page when email is sent and there is no success redirect configured');
+  it('defaults to a blank success page when email is sent and there is no success redirect configured', function (done) {
+    app.use(forms({
+      transport: 'Stub'
+    }));
+    
+    request(app)
+      .post('/forms/blank')
+      .expect(200)
+      .expect('Success')
+      .end(done);
+  });
+  
+  it.skip('defaults to a blank error page when email is sent and there is no error redirect configured', function (done) {
+    app.use(forms({
+      transport: 'Stub',
+      options: {
+        error: 'nope'
+      }
+    }));
+    
+    request(app)
+      .post('/forms/faulty')
+      .expect(500)
+      .expect('Error')
+      .end(done);
+  });
   
 });
 
