@@ -16,8 +16,12 @@ your `superstatic.json` might have a section like this:
   "forms": {
     "contact": {
       "to":"Company Contact <info@your-company.com>",
-      "from":"{{email}}",
-      "subject":"Contact form filled out by {{name}}"
+      "reply_to":"{{email}}",
+      "subject":"Contact Received from {{name}}",
+      "html":"<b>Name:</b> {{name}}",
+      "text":"Name: {{name}}",
+      "success":"/contact-received",
+      "failure":"/contact-failure"
     },
     "beta": {
       "to":"beta@your-company.com",
@@ -30,15 +34,29 @@ your `superstatic.json` might have a section like this:
 
 This would allow a form with method `POST` and action `/__/forms/contact`
 to submit a contact email, and action `/__/forms/beta` to submit a beta
-signup email.
+signup email. For example:
 
-### List of Configuration Options
+```html
+<form method="POST" action="/__/forms/contact">
+  <label>Name:</label> <input name="name" type="text">
+  <label>Email:</label> <input name="email" type="submit">
+  <button type="submit">Contact Us</button>
+</form>
+```
 
-* **to:** The email address (and name) of the recipient. This field **cannot be dynamic**.
-* **reply_to:** The reply-to address for the email, for easy followup.
-* **subject:** The subject of the email.
-* **html:** (optional) an HTML template for the body of the email. Otherwise key value pairs will be displayed nicely.
-* **text:** (optional) a plain text template for the body of the email.
+### Configuration Options
+
+* **to:** Email address of the recipient with optional name. This field **cannot be dynamic**.
+* **reply_to:** Reply-to address for easy follow-up.
+* **subject:** Subject of the email.
+* **html:** (optional) HTML template for the email body.
+* **text:** (optional) Plain text template for the email body.
+* **success:** (optional) Redirect URL on successful submission.
+* **failure:** (optional) Redirect URL on failure.
+
+The `subject`, `reply_to`, `html`, and `text` fields are all rendered using Handlebars. If you don't supply `html` or `text` a simple list of the submitted form information will be added automatically.
+
+**Note:** To prevent spam and other abuse, the `to` address is only configurable in `superstatic.json`. It is not templatable.
 
 ## Server-Side
 
