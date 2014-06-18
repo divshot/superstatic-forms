@@ -3,6 +3,7 @@ var expect = require('chai').expect;
 var request = require('supertest');
 var connect = require('connect');
 var config = require('./config.json');
+var errors = require('../lib/errors');
 
 describe('forms service', function () {
   var app;
@@ -49,6 +50,22 @@ describe('forms service', function () {
       .end(done);
   });
   
+  it('returns a default response if no configuration is provided', function (done) {
+    app.use(forms());
+    
+    request(app)
+      .post('/forms/contact')
+      .set('x-requested-with', 'XMLHttpRequest')
+      .expect(200)
+      .expect(function (res) {
+        var emailHeaders = JSON.parse(res.text);
+        expect(emailHeaders.sent).to.equal(false);
+        expect(emailHeaders.headers).to.not.equal(undefined);
+        expect(emailHeaders.text).to.equal('HEY THERE!');
+      })
+      .end(done);
+  });
+  
   it('sends email and redirects with success value on non xhr requests', function (done) {
     app.use(forms({
       from: 'Some Other Guy <sender@test.com>',
@@ -71,7 +88,7 @@ describe('forms service', function () {
       .post('/forms/faulty')
       .set('x-requested-with', 'XMLHttpRequest')
       .expect(400)
-      .expect(forms.errorMessages.MISSING_RECIPIENT)
+      .expect(errors.MISSING_RECIPIENT)
       .end(done);
   });
   
