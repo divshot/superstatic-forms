@@ -31,7 +31,7 @@
     "supertest": "~0.12.1"
   },
   "dependencies": {
-    "body-parser": "~1.2.0",
+    "body-parser": "^1.6.3",
     "interpolate": "^0.1.0",
     "lodash": "~2.4.1",
     "mailparser": "~0.4.3",

@@ -17,7 +17,7 @@ var forms = module.exports = function (settings) {
     if (req.method !== 'POST') return next();
     if (!taskName || !taskConfig) return next();
     
-    bodyParser()(req, res, function (err) {
+    bodyParser.json()(req, res, function (err) {
       var rawMailOptions = _.extendAndOmit(settings, taskConfig, ['transport', 'options']);
       var mailOptions = parseOptionsTemplate(rawMailOptions, req.body);
       
