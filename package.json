@@ -1,6 +1,6 @@
 {
   "name": "superstatic-forms",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A simple service for capturing submitted forms via email",
   "main": "index.js",
   "scripts": {
@@ -31,11 +31,12 @@
     "supertest": "~0.12.1"
   },
   "dependencies": {
-    "body-parser": "^1.6.3",
+    "body-parser": "^1.7.0",
     "interpolate": "^0.1.0",
     "is-xhr": "^0.1.0",
     "lodash": "~2.4.1",
     "mailparser": "~0.4.3",
-    "nodemailer": "^0.7.0"
+    "nodemailer": "^0.7.0",
+    "stacked": "^1.1.0"
   }
 }

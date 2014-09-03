@@ -16,7 +16,7 @@ your `superstatic.json` might have a section like this:
   "forms": {
     "contact": {
       "to":"Company Contact <info@your-company.com>",
-      "reply_to":"{{email}}",
+      "from": "{{email}}",
       "subject":"Contact Received from {{name}}",
       "html":"<b>Name:</b> {{name}}",
       "text":"Name: {{name}}",
@@ -46,15 +46,16 @@ signup email. For example:
 
 ### Configuration Options
 
-* **to:** Email address of the recipient with optional name. This field **cannot be dynamic**.
-* **reply_to:** Reply-to address for easy follow-up.
+* **to:** REQUIRED. Email address of the recipient with optional name. This field **cannot be dynamic**.
+* **from:** REQUIRED. Email address to mark the email as being sent from.
+* **replyTo:** Reply-to address for easy follow-up.
 * **subject:** Subject of the email.
 * **html:** (optional) HTML template for the email body.
 * **text:** (optional) Plain text template for the email body.
 * **success:** (optional) Redirect URL on successful submission.
 * **failure:** (optional) Redirect URL on failure.
 
-The `subject`, `reply_to`, `html`, and `text` fields are all rendered using Handlebars. If you don't supply `html` or `text` a simple list of the submitted form information will be added automatically.
+The `subject`, `replyTo`, `html`, and `text` fields are all rendered using Handlebars. If you don't supply `html` or `text` a simple list of the submitted form information will be added automatically.
 
 **Note:** To prevent spam and other abuse, the `to` address is only configurable in `superstatic.json`. It is not templatable.
 

@@ -8,7 +8,8 @@ var errors = require('../lib/errors');
 describe('forms service', function () {
   var app;
   
-  beforeEach(function () {    this.timeout(400);
+  beforeEach(function () {   
+    this.timeout(400);
     app = connect()
       .use(setupServiceConfig());
   });
@@ -81,7 +82,8 @@ describe('forms service', function () {
   
   it('returns bad request if request is missing email recipient value over xhr', function (done) {
     app.use(forms({
-      transport: 'Stub'
+      transport: 'Stub',
+      from: 'test@test.com'
     }));
     
     request(app)
@@ -89,6 +91,20 @@ describe('forms service', function () {
       .set('x-requested-with', 'XMLHttpRequest')
       .expect(400)
       .expect(errors.MISSING_RECIPIENT)
+      .end(done);
+  });
+  
+  it('returns a bad request if there is no sender email set over xhr', function (done) {
+    app.use(forms({
+      to: 'test@test.com',
+      transport: 'Stub'
+    }));
+    
+    request(app)
+      .post('/forms/faulty')
+      .set('x-requested-with', 'XMLHttpRequest')
+      .expect(400)
+      .expect(errors.MISSING_SENDER)
       .end(done);
   });
   
@@ -129,6 +145,7 @@ describe('forms service', function () {
   it('returns a 500 on unsuccessful send from xhr request with error message', function (done) {
     app.use(forms({
       transport: 'Stub',
+      from: 'test@test.com',
       options: {
         error: 'can not do'
       }
@@ -159,7 +176,8 @@ describe('forms service', function () {
   
   it('defaults to a blank success page when email is sent and there is no success redirect configured', function (done) {
     app.use(forms({
-      transport: 'Stub'
+      transport: 'Stub',
+      from: 'test@test.com'
     }));
     
     request(app)
