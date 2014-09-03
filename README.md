@@ -46,14 +46,14 @@ signup email. For example:
 
 ### Configuration Options
 
-* **to:** REQUIRED. Email address of the recipient with optional name. This field **cannot be dynamic**.
-* **from:** REQUIRED. Email address to mark the email as being sent from.
-* **replyTo:** Reply-to address for easy follow-up.
-* **subject:** Subject of the email.
+* **to:** (required) Email address of the recipient with optional name. This field **cannot be dynamic**.
+* **from:** (required) Email address to mark the email as being sent from.
+* **replyTo:** (optional) Reply-to address for easy follow-up.
+* **subject:** (required) Subject of the email.
 * **html:** (optional) HTML template for the email body.
 * **text:** (optional) Plain text template for the email body.
-* **success:** (optional) Redirect URL on successful submission.
-* **failure:** (optional) Redirect URL on failure.
+* **success:** (required only if it's not an ajax request) Redirect URL on successful submission.
+* **failure:** (required only if it's not an ajax request) Redirect URL on failure.
 
 The `subject`, `replyTo`, `html`, and `text` fields are all rendered using Handlebars. If you don't supply `html` or `text` a simple list of the submitted form information will be added automatically.
 
