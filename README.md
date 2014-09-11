@@ -15,18 +15,20 @@ your `superstatic.json` might have a section like this:
 {
   "forms": {
     "contact": {
-      "to":"Company Contact <info@your-company.com>",
-      "from": "{{email}}",
-      "subject":"Contact Received from {{name}}",
-      "html":"<b>Name:</b> {{name}}",
-      "text":"Name: {{name}}",
-      "success":"/contact-received",
-      "failure":"/contact-failure"
+      "to": "info@your-company.com",
+      "from": "forms@your-company.com",
+      "replyTo": "{{name}} <{{email}}>",
+      "subject": "Contact Received from {{name}}",
+      "html": "<b>Name:</b> {{name}}",
+      "text": "Name: {{name}}",
+      "success": "/contact-received",
+      "failure": "/contact-failure"
     },
     "beta": {
-      "to":"beta@your-company.com",
-      "subject":"Beta Signup",
-      "text":"{{name}} signed up for the private beta."
+      "to": "beta@your-company.com",
+      "from": "forms@your-company.com",
+      "subject": "Beta Signup",
+      "text": "{{username}} ({{email}}) signed up for the private beta."
     }
   }
 }
