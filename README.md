@@ -57,7 +57,7 @@ signup email. For example:
 * **success:** (required only if it's not an ajax request) Redirect URL on successful submission.
 * **failure:** (required only if it's not an ajax request) Redirect URL on failure.
 
-The `subject`, `replyTo`, `html`, and `text` fields are all rendered using Handlebars. If you don't supply `html` or `text` a simple list of the submitted form information will be added automatically.
+The `subject`, `replyTo`, `html`, and `text` fields are all rendered using a Handlebars-like interpolation.
 
 **Note:** To prevent spam and other abuse, the `to` address is only configurable in `superstatic.json`. It is not templatable.
 
