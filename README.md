@@ -70,9 +70,14 @@ in the background, so configuration is based on that.
 ```js
 require('superstatic-forms')({
   from: "no-reply@your-company.com",
-  transport: 'SMTP',
-  options: {
-    // ...
-  }
+  transport: require('nodemailer-sendgrid-transport')({
+    auth: {
+      api_user: 'MY_USERNAME',
+      api_key: 'MY_PASSWORD'
+    }
+  });
 });
 ```
+
+**Note:** As of `superstatic-forms` 0.4.0, `nodemailer` 1.0 is used and the
+transport should be passed in as a object, not a string with options.
