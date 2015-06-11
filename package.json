@@ -28,6 +28,7 @@
     "connect": "~2.15.0",
     "jshint": "~2.5.0",
     "mocha": "~1.18.2",
+    "nodemailer-stub-transport": "^1.0.0",
     "supertest": "~0.12.1"
   },
   "dependencies": {

@@ -21,7 +21,7 @@ var forms = module.exports = function (settings) {
     if (req.method !== 'POST') return next();
     if (!taskName || !taskConfig) return next();
 
-    var rawMailOptions = _.extendAndOmit(settings, taskConfig, ['transport']);
+    var rawMailOptions = _.extendAndOmit(settings, taskConfig, ['transport','options']);
     var mailOptions = parseOptionsTemplate(rawMailOptions, req.body);
 
     if (!mailOptions.from) return response.missingSender(res, taskConfig, isXhr(req));
